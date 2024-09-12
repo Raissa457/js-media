@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Média</title>
+    <script>
+        // Função para calcular a média de um array de números
+        function calcularMedia(numeros) {
+            const soma = numeros.reduce((acc, num) => acc + num, 0);
+            return soma / numeros.length;
+        }
+
+        // Função para adicionar um número à lista e exibir a média
+        function adicionarNumero() {
+            const inputNumero = document.getElementById('numero');
+            const numero = parseFloat(inputNumero.value);
+
+            if (!isNaN(numero)) {
+                const listaNumeros = document.getElementById('listaNumeros');
+                const li = document.createElement('li');
+                li.textContent = numero;
+                listaNumeros.appendChild(li);
+
+                // Adicionar número ao array e calcular a média
+                numeros.push(numero);
+                const media = calcularMedia(numeros);
+                document.getElementById('media').textContent = `Média: ${media.toFixed(2)}`;
+            } else {
+                alert('Por favor, insira um número válido.');
+            }
+
+            // Limpar campo de entrada
+            inputNumero.value = '';
+        }
+
+        // Array para armazenar os números inseridos
+        const numeros = [];
+    </script>
+</head>
+<body>
+    <h1>Calculadora de Média</h1>
+
+    <label for="numero">Insira um número:</label>
+    <input type="number" id="numero" step="any">
+    <button onclick="adicionarNumero()">Adicionar Número</button>
+
+    <h2>Números inseridos:</h2>
+    <ul id="listaNumeros"></ul>
+
+    <h2 id="media">Média: N/A</h2>
+</body>
+</html>
